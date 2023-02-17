@@ -1,0 +1,17 @@
+EXE=testformat$(EXTENSION)
+PACKAGE=testformat
+DIST=$(PACKAGE)-$(VERSION)
+
+all: $(EXE)
+
+cpputils/cpputilsshared/libcpputilsshared.a:
+	cd cpputils/cpputilsshared && gmake
+
+$(EXE): $(OFILES) cpputils/cpputilsshared/libcpputilsshared.a 
+	$(CXX) -o $(EXE) $(CXXFLAGS) $(OFILES) -lcpputilsshared $(LDFLAGS)
+
+clean_tools:
+	 cd cpputils/cpputilsshared && gmake clean
+
+oclean: clean_tools
+	 $(RM) core $(OFILES) 
