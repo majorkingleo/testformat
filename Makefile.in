@@ -7,11 +7,20 @@ all: $(EXE)
 cpputils/cpputilsshared/libcpputilsshared.a:
 	cd cpputils/cpputilsshared && gmake
 
-$(EXE): $(OFILES) cpputils/cpputilsshared/libcpputilsshared.a 
-	$(CXX) -o $(EXE) $(CXXFLAGS) $(OFILES) -lcpputilsshared $(LDFLAGS)
+cpputils/cpputilsshared/cpputilsformat.a:
+	cd cpputils/cpputilsshared/cpputilsformat && gmake
+
+cpputils/io/libcpputilsio.a:
+	cd cpputils/io && gmake
+
+$(EXE): $(OFILES) cpputils/cpputilsshared/libcpputilsshared.a  \
+				  cpputils/io/libcpputilsio.a \
+				  cpputils/cpputilsshared/cpputilsformat.a
+	$(CXX) -o $(EXE) $(CXXFLAGS) $(OFILES) -lcpputilsformat -lcpputilsio -lcpputilsshared $(LDFLAGS)
 
 clean_tools:
 	 cd cpputils/cpputilsshared && gmake clean
+	 cd cpputils/io && gmake clean
 
 oclean: clean_tools
 	 $(RM) core $(OFILES) 

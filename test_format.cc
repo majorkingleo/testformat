@@ -1,9 +1,10 @@
 #include <format.h>
-#include <colored_output.h>
+#include <ColoredOutput.h>
 #include <math.h>
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include "test_wformat.h"
 
 #define FAC_DEFAULT "test_format"
 
@@ -85,6 +86,8 @@ int main( int argc, char **argv )
   } catch( std::exception & error ) {
     std::cerr << format( "Error: %s\n", error.what() );
   }
+
+   test_wformat( argc, argv );
 
   return 0;
 }

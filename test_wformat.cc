@@ -6,6 +6,8 @@
 #include <DetectLocale.h>
 #include "utf8_util.h"
 #include "test_wformat.h"
+#include <ColoredOutput.h>
+
 
 using namespace Tools;
 
@@ -14,9 +16,9 @@ using namespace Tools;
  bb = buffer; \
  std::cout << "wformat: " << aa << "\t==\t" << bb << "\t: "; \
  if( aa == bb ) \
-   std::cout << "true"; \
+   std::cout << colored_output.color_output( colored_output.GREEN,"true" ); \
  else \
-   std::cout <<  " <<<<<<<<<<<<<< false"; \
+   std::cout << colored_output.color_output( colored_output.RED, "false" ); \
  std::cout << std::endl;
 
 
@@ -26,9 +28,9 @@ using namespace Tools;
  bb = buffer; \
  std::cout << "format:  "<< aa << "\t==\t" << bb << "\t: "; \
  if( aa == bb ) \
-   std::cout << "true"; \
+   std::cout << colored_output.color_output( colored_output.GREEN,"true" ); \
  else \
-   std::cout <<  " <<<<<<<<<<<<<< false"; \
+   std::cout << colored_output.color_output( colored_output.RED, "false" ); \
  std::cout << std::endl;
 
 int test_wformat( int argc, char **argv )
@@ -37,6 +39,8 @@ int test_wformat( int argc, char **argv )
 
 	char buffer[250];
 	std::string aa, bb;
+
+	ColoredOutput colored_output;
 
 	try {
 		TESTW( wformat( L"%s", "String" ),                 sprintf( buffer, "%s", "String" ));
