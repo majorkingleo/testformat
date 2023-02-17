@@ -1,0 +1,4 @@
+[submodule "cpputils"]
+	path = cpputils
+#	url = git@private-github:majorkingleo/cpputils.git
+	url = https://github.com/majorkingleo/cpputils.git
