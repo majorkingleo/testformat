@@ -21,6 +21,7 @@ $(EXE): $(OFILES) cpputils/cpputilsshared/libcpputilsshared.a  \
 clean_tools:
 	 cd cpputils/cpputilsshared && gmake clean
 	 cd cpputils/io && gmake clean
+	 cd cpputils/cpputilsshared/cpputilsformat && gmake clean
 
 oclean: clean_tools
 	 $(RM) core $(OFILES) 
